@@ -1,0 +1,21 @@
+@import '../../../theme/variables';
+
+
+ion-tab-button, ion-icon{
+  transition: all 0.1s ease-out;
+}
+
+// ion-tab-button:active{
+
+//   ion-icon {
+//     font-size: 45px;
+//   }
+//   color: #161B22;
+// }
+
+.active-class {
+  ion-icon {
+    font-size: 40px;
+  }
+  color: #161B22;
+}

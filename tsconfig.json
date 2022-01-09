@@ -12,7 +12,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"]
+    "lib": ["es2018", "dom"],
+    "paths":{
+      "@pokemonTcgApp/shared/*": ["./src/app/shared/*"],
+      "@pokemonTcgApp/core/*": ["./src/app/core/*"],
+      "@pokemonTcgApp/shared-ui/*": ["./src/app/shared-ui/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

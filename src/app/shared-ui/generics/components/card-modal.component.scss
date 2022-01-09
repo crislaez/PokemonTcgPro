@@ -1,0 +1,43 @@
+@import '../../../../theme/variables';
+
+
+.ion-button-close{
+  --background: none;
+}
+
+.modal-ion-card{
+  margin-top: 80px;
+  width: 90%;
+  min-height: 80vh;
+  background: $fourtiary;
+
+  ion-img{
+    border-radius: 20px;
+  }
+}
+
+
+.ion-card-content-container{
+  >div, a{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.span-image{
+  width: 1.5em !important;
+  min-height: 10px !important;
+  background: none !important;
+}
+
+
+hr {
+  // border: 2px solid red !important;
+  height: 2px !important;
+  width: 80% !important;
+  background: $tertiary !important;
+  display: block !important;
+  font-size: 2em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
