@@ -157,7 +157,6 @@ export class CardsPage {
     this.infiniteScroll$
   ]).pipe(
     tap(([{setId}, {page, filter }]) => {
-      console.log('CARD ', page, filter)
       const updateFilter = {...filter, setName: setId}
       this.store.dispatch(CardActions.loadCards({page, filter: updateFilter}))
     }),

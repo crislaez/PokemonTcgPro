@@ -151,7 +151,6 @@ export class SearchPage {
   cards$ = this.infiniteScroll$.pipe(
     // startWith(this.statusComponent),
     tap(({page, filter }) => {
-      console.log('SEARCH ', page, filter)
       this.store.dispatch(CardActions.loadCards({page, filter}));
     }),
     switchMap(() =>
