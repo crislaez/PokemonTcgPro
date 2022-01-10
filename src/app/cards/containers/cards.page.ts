@@ -11,7 +11,7 @@ import { fromTypes } from '@pokemonTcgApp/shared/types';
 import { errorImage, gotToTop, sliceText, trackById } from '@pokemonTcgApp/shared/utils/helpers/functions';
 import { Filter } from '@pokemonTcgApp/shared/utils/models';
 import { combineLatest } from 'rxjs';
-import { startWith, switchMap, tap } from 'rxjs/operators';
+import { map, startWith, switchMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -53,13 +53,6 @@ import { startWith, switchMap, tap } from 'rxjs/operators';
                 <!-- CARDS  -->
                 <ng-container *ngIf="cards?.length > 0; else noData">
 
-                  <!-- <ng-container *ngFor="let card of cards; let i = index; trackBy: trackById ">
-                    <ion-card class="ion-card-card ion-activatable ripple-parent" (click)="openSingleCardModal(card)">
-                      <ion-img  [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
-
-                      <ion-ripple-effect></ion-ripple-effect>
-                    </ion-card>
-                  </ng-container> -->
                   <ion-list>
                     <ion-item detail *ngFor="let card of cards; let i = index; trackBy: trackById" (click)="openSingleCardModal(card)">
                       <ion-img [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
@@ -140,7 +133,14 @@ export class CardsPage {
   title: string = ''
   search = new FormControl('');
 
-  types$ = this.store.select(fromTypes.getTypes);
+  types$ = combineLatest([
+    this.store.select(fromTypes.getTypes),
+    this.store.select(fromTypes.getSubtype),
+    this.store.select(fromTypes.getSupertype)
+  ]).pipe(
+    map(([types, subtypes, supertypes]) => ({types, subtypes, supertypes}))
+  );
+
   status$ = this.store.select(fromCard.getStatus);
   total$ = this.store.select(fromCard.getTotalCount);
   infiniteScroll$ = new EventEmitter<{page?:number, filter?:Filter}>();
@@ -153,16 +153,17 @@ export class CardsPage {
 
   cards$ = combineLatest([
     this.route.params,
-    this.infiniteScroll$.pipe(startWith(this.statusComponent))
+    // this.infiniteScroll$.pipe(startWith(this.statusComponent))
+    this.infiniteScroll$
   ]).pipe(
     tap(([{setId}, {page, filter }]) => {
+      console.log('CARD ', page, filter)
       const updateFilter = {...filter, setName: setId}
       this.store.dispatch(CardActions.loadCards({page, filter: updateFilter}))
     }),
     switchMap(() =>
       this.store.select(fromCard.getCards)
     )
-    // ,tap(d => console.log(d))
   );
 
 
@@ -176,9 +177,11 @@ export class CardsPage {
   }
 
 
+  // INIT COMPONENT
   ionViewWillEnter(){
+    this.search.reset();
     this.statusComponent = { page: 1, filter: { setName: this.route.snapshot.params?.setId || '' } };
-    this.infiniteScroll$.next(this.statusComponent)
+    this.infiniteScroll$.next(this.statusComponent);
   }
 
   // SEARCH
@@ -242,16 +245,18 @@ export class CardsPage {
   }
 
   // OPEN FILTER MODAL
-  async openFilterModal( typesFilter ) {
+  async openFilterModal( types ) {
     const modal = await this.modalController.create({
       component: FilterModalComponent,
       cssClass: 'my-custom-modal-css',
       componentProps: {
         statusComponent: this.statusComponent,
-        typesFilter
+        typesFilter: types?.types || [],
+        subtypesFilter: types?.subtypes ||[],
+        supertypesFilter: types?.supertypes || []
       },
       breakpoints: [0, 0.2, 0.5, 1],
-      initialBreakpoint: 0.2,
+      initialBreakpoint: 0.3, //modal height
     });
 
     modal.onDidDismiss()

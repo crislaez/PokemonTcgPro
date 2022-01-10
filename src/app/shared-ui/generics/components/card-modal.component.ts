@@ -25,7 +25,7 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
 
       <ng-container *ngIf="emptyObject(card); else noData">
         <ion-card class="modal-ion-card ion-activatable ripple-parent">
-          <ion-img  [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
+          <ion-img  [src]="card?.images?.large" loading="lazy" (ionError)="errorImage($event)"></ion-img>
 
           <ion-card-content>
             <ng-container *ngIf="(types$ | async) as types">
@@ -66,7 +66,8 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
 
               </div>
 
-              <!-- ABILITIES  -->
+
+              <!-- MOSTER ABILITIES  -->
               <ng-container *ngIf="card?.abilities?.length > 0">
                 <hr>
 
@@ -76,6 +77,19 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
                   <ng-container *ngFor="let ability of card?.abilities">
                     <div class="width-90 mediun-size text-center">{{ ability?.type }} - {{ ability?.name }}</div>
                     <div class="width-90 mediun-size text-center">{{ ability?.text }}</div>
+                  </ng-container>
+                </div>
+              </ng-container>
+
+              <!-- NO MONSTER RULES  -->
+              <ng-container *ngIf="card?.rules?.length > 0">
+                <hr>
+
+                <div class="ion-card-content-container displays-around text-color-light">
+                  <div class="width-90 big-size text-center span-bold">{{ 'COMMON.RULES' | translate }}</div>
+
+                  <ng-container *ngFor="let rule of card?.rules">
+                    <div class="width-90 mediun-size text-center">{{ rule }}</div>
                   </ng-container>
                 </div>
               </ng-container>
@@ -96,7 +110,6 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
                   <ng-template #noPokemon>
                     <div class="width-90 big-size-medium text-center"><span class="span-bold">{{ card?.name }}</span> <br> {{ card?.supertype }} - <span *ngFor="let subtype of getSuptypes(card?.subtypes)">{{ subtype }}</span> </div>
                   </ng-template>
-
               </div>
 
               <!-- ATTACKS  -->

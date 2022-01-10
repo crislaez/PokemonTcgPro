@@ -47,10 +47,13 @@
     "INFORMATION":"Information",
     "HP":"HP",
     "FILTERS":"Filters",
-    "ALL":"All"
+    "ALL":"All",
+    "RULES":"Rules"
   },
   "FILTERS":{
-    "BY_TYPES":"By type..."
+    "BY_TYPES":"By type...",
+    "BY_SUPERTYPES":"By supertype...",
+    "BY_SUBTYPES":"By subtype..."
   },
   "ERRORS":{
     "ERROR_LOAD_CARDS":"Error loading cards",

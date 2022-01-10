@@ -17,8 +17,9 @@ import { Filter } from '@pokemonTcgApp/shared/utils/models/index';
     </ion-header>
 
     <div class="displays-around height-100">
-      <ng-container *ngIf="emptyObject(typesFilter)">
-        <ion-item *ngIf="typesFilter?.length > 0" class="fade-in-card item-select font-medium width-84 big-size-medium">
+
+      <ng-container *ngIf="typesFilter?.length > 0" >
+        <ion-item class="fade-in-card item-select font-medium width-84 big-size-medium">
           <ion-label>{{'FILTERS.BY_TYPES' | translate}}</ion-label>
           <ion-select (ionChange)="changeFilter($any($event), 'types')" [value]="statusComponent?.filter?.types" interface="action-sheet">
             <ion-select-option [value]="''">{{ 'COMMON.ALL' | translate }}</ion-select-option>
@@ -26,6 +27,27 @@ import { Filter } from '@pokemonTcgApp/shared/utils/models/index';
           </ion-select>
         </ion-item>
       </ng-container>
+
+      <ng-container *ngIf="subtypesFilter?.length > 0" >
+        <ion-item class="fade-in-card item-select font-medium width-84 big-size-medium">
+          <ion-label>{{'FILTERS.BY_SUBTYPES' | translate}}</ion-label>
+          <ion-select (ionChange)="changeFilter($any($event), 'subtypes')" [value]="statusComponent?.filter?.subtypes" interface="action-sheet">
+            <ion-select-option [value]="''">{{ 'COMMON.ALL' | translate }}</ion-select-option>
+            <ion-select-option *ngFor="let type of subtypesFilter" [value]="type">{{type}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+
+      <ng-container *ngIf="supertypesFilter?.length > 0" >
+        <ion-item class="fade-in-card item-select font-medium width-84 big-size-medium">
+          <ion-label>{{'FILTERS.BY_SUPERTYPES' | translate}}</ion-label>
+          <ion-select (ionChange)="changeFilter($any($event), 'supertypes')" [value]="statusComponent?.filter?.supertypes" interface="action-sheet">
+            <ion-select-option [value]="''">{{ 'COMMON.ALL' | translate }}</ion-select-option>
+            <ion-select-option *ngFor="let type of supertypesFilter" [value]="type">{{type}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ng-container>
+
     </div>
 
   </ion-content>
@@ -36,7 +58,10 @@ import { Filter } from '@pokemonTcgApp/shared/utils/models/index';
 export class FilterModalComponent {
 
   emptyObject = emptyObject;
-  @Input() typesFilter: {type:string, image:string}[]
+  @Input() typesFilter: {type:string, image:string}[];
+  @Input() subtypesFilter: string[];
+  @Input() supertypesFilter: string[];
+
   @Input() statusComponent: { page?:number, filter?:Filter }  = {};
 
   constructor(

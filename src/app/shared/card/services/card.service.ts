@@ -21,12 +21,15 @@ export class CardService {
 
   getAllCards(page: number = 0, filter: Filter): Observable<any> {
     // console.log('SERVICES', page, filter)
-    const { setName = null, name = null, types = null} = filter || {};
+    const { setName = null, name = null, types = null, supertypes = null, subtypes = null } = filter || {};
+
     let params = new HttpParams();
     let q = '';
     if (setName) q += `set.id:${setName}`
     if(name) q += ` name:${name}`;
     if(types) q +=` types:${types}`;
+    if(supertypes) q +=` supertype:${supertypes}`;
+    if(subtypes) q +=` subtypes:${subtypes}`;
 
     params = params.append('q', q);
 
@@ -35,10 +38,6 @@ export class CardService {
         const { data = null, page = null, pageSize = null, totalCount = null, count = null  } = response || {};
         return {cards: data || [], page, pageSize, totalCount: Math.ceil(totalCount / Number(this.perPage)), count }
       }),
-      // map(() => {
-      //   return {cards: []}
-      //   throw 504
-      // }),
       catchError((error) => {
         return throwError(error)
       })

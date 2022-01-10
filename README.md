@@ -6,7 +6,7 @@ Pokemon Tcg Info Pro es una aplicación hecha en Ionic (Angular, TypeScript, Sas
 <hr>
 <img src="https://github.com/crislaez/PokemonTcgPro/blob/master/src/assets/images/pokemonTcgPro_2.jpg" />
 <hr>
-<img src="https://github.com/crislaez/PokemonTcgPro/blob/master/src/assets/images/PokemonTcgPro_3.jpg" />
+<img src="https://github.com/crislaez/PokemonTcgPro/blob/master/src/assets/images/pokemonTcgPro_3.jpg" />
 <hr>
 <img src="https://github.com/crislaez/PokemonTcgPro/blob/master/src/assets/images/pokemonTcgPro_4.jpg" />
 <hr>

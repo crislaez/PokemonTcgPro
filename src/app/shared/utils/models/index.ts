@@ -45,4 +45,6 @@ export interface Filter{
   "setName"?: string;
   "name"?: string;
   "types"?: string;
+  "subtypes"?:string
+  "supertypes"?:string
 }
