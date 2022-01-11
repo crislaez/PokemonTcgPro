@@ -618,6 +618,16 @@ ion-avatar{
   }
 }
 
+// START MODAL FILTER *****
+ion-modal{
+  --background: none !important;
+}
+
+.ion-button-close{
+  --background: none;
+  --color:white !important;
+}
+
 .my-custom-modal-css .modal-wrapper {
   // margin-top: 100vh;
   position: absolute;
@@ -628,6 +638,7 @@ ion-avatar{
   --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
   --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
 }
+// END MODAL FILTER  *****
 
 // CAPITAL LETTER
 .capital-letter{

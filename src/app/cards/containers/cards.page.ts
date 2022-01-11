@@ -255,7 +255,7 @@ export class CardsPage {
         supertypesFilter: types?.supertypes || []
       },
       breakpoints: [0, 0.2, 0.5, 1],
-      initialBreakpoint: 0.3, //modal height
+      initialBreakpoint: 0.4, //modal height
     });
 
     modal.onDidDismiss()
