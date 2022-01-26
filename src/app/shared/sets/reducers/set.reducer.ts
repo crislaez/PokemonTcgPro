@@ -7,7 +7,7 @@ export const setFeatureKey = 'set';
 
 export interface State {
   status: EntityStatus;
-  sets?: Set[];
+  sets?: { [key:string]:Set[] };
   lastSets?: Set[];
   error?: unknown;
 };
@@ -26,9 +26,20 @@ export const reducer = createReducer(
     const filterSets = ([...sets] || [])?.sort((a, b) => {
       if ((a as any)?.releaseDate < (b as any)?.releaseDate)    return -1;
       else if( (a as any)?.releaseDate > (b as any)?.releaseDate) return  1;
-      else                      return  0;
+      else  return  0;
     }) || [];
     const lastSets = filterSets?.slice(-10)?.reverse() || [];
-    return { ...state, sets: filterSets, lastSets, status, error }
+
+    const objSets: any = filterSets?.reduce((acc, el) => {
+      return {
+        ...(acc ? acc : []),
+        [el?.series]: [
+          ...(acc?.[el?.series] ? acc?.[el?.series] : []),
+          ...(el ? [el] : [])
+        ]
+      }
+    },{})
+
+    return { ...state, sets: objSets, lastSets, status, error }
   })
 );

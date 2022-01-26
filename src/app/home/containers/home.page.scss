@@ -1,16 +1,16 @@
 @import '../../../theme/variables';
 
+:host ::ng-deep .swiper-pagination{
+
+  .swiper-pagination-bullet {
+    background-color: $primary;
+  }
+
+}
+
 ion-button{
   --border-radius: 5px !important;
 }
-
-// ion-slides{
-//   margin-top: 10px;
-
-//   ion-slide{
-//     min-height: 150px;
-//   }
-// }
 
 swiper {
   margin-top: 10px;
@@ -48,3 +48,4 @@ swiper {
   color: $fifthiary;
   background: $secondary !important;
 }
+

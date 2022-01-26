@@ -162,18 +162,6 @@ export class HomePage {
     switchMap(({slice}) =>
       this.store.select(fromSet.getSets).pipe(
         map(sets => {
-          return sets?.reduce((acc, el) => {
-            return {
-              ...(acc ? acc : []),
-              [el?.series]: [
-                ...(acc?.[el?.series] ? acc?.[el?.series] : []),
-                ...(el ? [el] : [])
-              ]
-            }
-          },{})
-        })
-        // ,tap(d => console.log(d))
-        ,map(sets => {
           const filterData = (Object.entries(sets) || []).slice(0, slice).reduce((acc, el) => {
             const [ key = null, values = null ] = el || []
             return {
@@ -191,22 +179,6 @@ export class HomePage {
       )
     )
   );
-
-
-
-  // sets$ = this.store.select(fromSet.getSets).pipe(
-  //   map(sets => {
-  //     return sets?.reduce((acc, el) => {
-  //       return {
-  //         ...(acc ? acc : []),
-  //         [el?.series]: [
-  //           ...(acc?.[el?.series] ? acc?.[el?.series] : []),
-  //           ...(el ? [el] : [])
-  //         ]
-  //       }
-  //     },{})
-  //   })
-  // );
 
 
   constructor(
@@ -252,11 +224,13 @@ export class HomePage {
     return {
       // initialSlide: 0,
       // speed: 400,
-      slidesOffsetBefore: info?.length,
+      // slidesOffsetBefore: info?.length,
       slidesPerView: info?.length > 1 ? 2 : 1,
       spaceBetween: 30,
       freeMode: true,
       pagination:{   clickable: true },
+      lazy: true,
+      preloadImages: false
 
       // effect:'coverflow',
       // coverflowEffect:{

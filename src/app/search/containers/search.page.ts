@@ -149,13 +149,13 @@ export class SearchPage {
   };
 
   cards$ = this.infiniteScroll$.pipe(
-    // startWith(this.statusComponent),
     tap(({page, filter }) => {
       this.store.dispatch(CardActions.loadCards({page, filter}));
     }),
     switchMap(() =>
       this.store.select(fromCard.getCards)
     )
+    // ,tap((data) => console.log(data))
   );
 
 
