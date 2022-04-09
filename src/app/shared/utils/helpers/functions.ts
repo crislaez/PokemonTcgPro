@@ -1,4 +1,5 @@
 import { IonContent } from "@ionic/angular";
+import { SwiperOptions } from "swiper";
 
 export const trackById = (_: number, item: any): number => {
   return item.id;
@@ -26,6 +27,17 @@ export const sliceText = (text: string) => {
 
 export const sliceLongText = (text: string) => {
   return text?.length > 30 ? text?.slice(0, 30) + '...' : text;
+}
+
+export const getSliderConfig = (info): SwiperOptions => {
+  return {
+      slidesPerView: info?.length > 1 ? 2 : 1,
+      spaceBetween: 30,
+      freeMode: true,
+      pagination:{   clickable: true },
+      lazy: true,
+      preloadImages: false
+  }
 }
 
 export enum EntityStatus {

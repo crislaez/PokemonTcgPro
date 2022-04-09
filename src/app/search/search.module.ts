@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { GenericsModule } from '@pokemonTcgApp/shared-ui/generics/generics.module';
 import { CardModule } from '@pokemonTcgApp/shared/card/card.module';
 import { RarityModule } from '@pokemonTcgApp/shared/rarity/rarity.module';
 import { SetsModule } from '@pokemonTcgApp/shared/sets/sets.module';
@@ -10,13 +11,13 @@ import { SharedModule } from './../shared/shared/shared.module';
 import { SearchPage } from './containers/search.page';
 import { SearchPageRoutingModule } from './search-routing.module';
 
-
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     SharedModule,
     SetsModule,
+    GenericsModule,
     RarityModule,
     TypesModule,
     CardModule,

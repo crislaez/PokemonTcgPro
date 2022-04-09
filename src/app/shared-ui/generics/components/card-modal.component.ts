@@ -25,7 +25,7 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
 
       <ng-container *ngIf="emptyObject(card); else noData">
         <ion-card class="modal-ion-card ion-activatable ripple-parent">
-          <ion-img  [src]="card?.images?.large" loading="lazy" (ionError)="errorImage($event)"></ion-img>
+          <ion-img class="principal-image" [src]="card?.images?.large" loading="lazy" (ionError)="errorImage($event)"></ion-img>
 
           <ion-card-content>
             <ng-container *ngIf="(types$ | async) as types">
@@ -205,13 +205,7 @@ import { emptyObject, errorImage, getObjectKeys } from '@pokemonTcgApp/shared/ut
 
       <!-- IS NO DATA  -->
       <ng-template #noData>
-        <div class="error-serve">
-          <div>
-            <span><ion-icon class="text-color-light max-size" name="clipboard-outline"></ion-icon></span>
-            <br>
-            <span class="text-color-light">{{'COMMON.NORESULT_ONLY' | translate}}</span>
-          </div>
-        </div>
+        <app-no-data [title]="'COMMON.NORESULT_ONLY'" [image]="'assets/images/empty.png'" [top]="'20vh'"></app-no-data>
       </ng-template>
     </div>
 

@@ -16,6 +16,9 @@
   }
 }
 
+ion-header{
+  background: none;
+}
 
 .ion-card-content-container{
   >div, a{
@@ -40,4 +43,8 @@ hr {
   font-size: 2em !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+.principal-image{
+  min-height: 490px !important;
 }

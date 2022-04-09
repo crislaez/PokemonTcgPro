@@ -1,0 +1,58 @@
+@import '../../../../theme/variables';
+
+:host{
+  width: 100%;
+}
+
+:host ::ng-deep .swiper-pagination{
+
+  .swiper-pagination-bullet {
+    background-color: $primary;
+  }
+
+}
+
+ion-button{
+  --border-radius: 5px !important;
+}
+
+swiper {
+  margin-top: 10px;
+  ng-template{
+    min-height: 150px;
+
+  }
+}
+
+.slide-ion-card{
+  width: 100% !important;
+  min-height: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: none;
+
+  img, ion-img{
+    width: 100%;
+    height: 110px !important;
+    border-radius: 10px;
+    background: #fff;
+    // object-fit: cover;
+  }
+
+  ion-card-header{
+    height: 80px !important;
+    margin-top: -5px;
+    color: $tertiary;
+  }
+}
+
+.ion-card-header{
+  min-height: 70px !important;
+  margin-top: -5px;
+  color: $fifthiary;
+  background: $secondary !important;
+}
+
+.card{
+  min-height: 214px;
+}

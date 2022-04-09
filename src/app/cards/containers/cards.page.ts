@@ -11,7 +11,7 @@ import { fromTypes } from '@pokemonTcgApp/shared/types';
 import { errorImage, gotToTop, sliceText, trackById } from '@pokemonTcgApp/shared/utils/helpers/functions';
 import { Filter } from '@pokemonTcgApp/shared/utils/models';
 import { combineLatest } from 'rxjs';
-import { map, startWith, switchMap, tap } from 'rxjs/operators';
+import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -29,7 +29,12 @@ import { map, startWith, switchMap, tap } from 'rxjs/operators';
 
     <!-- MAIN  -->
     <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="logScrolling($any($event))">
-      <div class="empty-header components-color components-background-primary"></div>
+      <div class="empty-header components-color components-background-primary">
+        <!-- FORM  -->
+        <form *ngIf="!['pending','error']?.includes(status$ | async)" (submit)="searchSubmit($event)">
+          <ion-searchbar [placeholder]="'COMMON.BY_NAME' | translate" [formControl]="search" (ionClear)="clearSearch($event)"></ion-searchbar>
+        </form>
+      </div>
 
       <div class="container components-background-dark">
 
@@ -37,11 +42,6 @@ import { map, startWith, switchMap, tap } from 'rxjs/operators';
           <ng-container *ngIf="status$ | async as status">
             <ng-container *ngIf="status !== 'pending' || statusComponent?.page !== 1; else loader">
               <ng-container *ngIf="status !== 'error'; else serverError">
-
-                <!-- FORM  -->
-                <form (submit)="searchSubmit($event)">
-                  <ion-searchbar [placeholder]="'COMMON.BY_NAME' | translate" [formControl]="search" (ionClear)="clearSearch($event)"></ion-searchbar>
-                </form>
 
                 <!-- FILTER  -->
                 <ng-container *ngIf="(types$ | async) as types">
@@ -52,26 +52,15 @@ import { map, startWith, switchMap, tap } from 'rxjs/operators';
 
                 <!-- CARDS  -->
                 <ng-container *ngIf="cards?.length > 0; else noData">
-
-                  <ion-list>
-                    <ion-item detail *ngFor="let card of cards; let i = index; trackBy: trackById" (click)="openSingleCardModal(card)">
-                      <ion-img [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
-                      <ion-label *ngIf="card?.name" >{{ sliceText(card?.name) }}</ion-label>
-                      <ion-label *ngIf="card?.number" > # {{ card?.number }}</ion-label>
-                    </ion-item>
-                  </ion-list>
-
-                  <!-- INFINITE SCROLL  -->
-                  <ng-container *ngIf="(total$ | async) as total">
-                    <ng-container *ngIf="statusComponent?.page < total">
-                      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event, total)">
-                        <ion-infinite-scroll-content class="loadingspinner">
-                          <ion-spinner *ngIf="status === 'pending'" class="loadingspinner"></ion-spinner>
-                        </ion-infinite-scroll-content>
-                      </ion-infinite-scroll>
-                    </ng-container>
-                  </ng-container>
-
+                  <app-infinite-scroll
+                    [items]="cards"
+                    [from]="'card'"
+                    [slice]="statusComponent?.page"
+                    [status]="status"
+                    [total]="(total$ | async)"
+                    (loadDataTrigger)="loadData($event)"
+                    (openSingleCardModal)="openSingleCardModal($event)">
+                  </app-infinite-scroll>
                 </ng-container>
 
               </ng-container>
@@ -86,29 +75,17 @@ import { map, startWith, switchMap, tap } from 'rxjs/operators';
 
         <!-- IS ERROR -->
         <ng-template #serverError>
-          <div class="error-serve">
-            <div>
-              <span><ion-icon class="text-color-light big-size" name="cloud-offline-outline"></ion-icon></span>
-              <br>
-              <span class="text-color-light">{{'COMMON.ERROR' | translate}}</span>
-            </div>
-          </div>
+          <app-no-data [title]="'COMMON.ERROR'" [image]="'assets/images/error.png'" [top]="'35vh'"></app-no-data>
         </ng-template>
 
         <!-- IS NO DATA  -->
         <ng-template #noData>
-          <div class="error-serve">
-            <div>
-              <span><ion-icon class="text-color-light max-size" name="clipboard-outline"></ion-icon></span>
-              <br>
-              <span class="text-color-light">{{'COMMON.NORESULT' | translate}}</span>
-            </div>
-          </div>
+          <app-no-data [title]="'COMMON.NORESULT'" [image]="'assets/images/empty.png'" [top]="'20vh'"></app-no-data>
         </ng-template>
 
         <!-- LOADER  -->
         <ng-template #loader>
-          <ion-spinner class="loadingspinner"></ion-spinner>
+          <app-spinner></app-spinner>
         </ng-template>
       </div>
 
@@ -141,7 +118,7 @@ export class CardsPage {
     map(([types, subtypes, supertypes]) => ({types, subtypes, supertypes}))
   );
 
-  status$ = this.store.select(fromCard.getStatus);
+  status$ = this.store.select(fromCard.getStatus).pipe(shareReplay(1));
   total$ = this.store.select(fromCard.getTotalCount);
   infiniteScroll$ = new EventEmitter<{page?:number, filter?:Filter}>();
   statusComponent: { page?:number, filter?:Filter } = {
@@ -208,17 +185,15 @@ export class CardsPage {
   }
 
   // INIFINITE SCROLL
-  loadData(event, total) {
-    setTimeout(() => {
-      this.statusComponent = {...this.statusComponent, page:(this.statusComponent?.page + 1) };
+  loadData({event, total}) {
+    this.statusComponent = {...this.statusComponent, page:(this.statusComponent?.page + 1) };
 
-      if(this.statusComponent?.page >= total){
-        if(this.ionInfiniteScroll) this.ionInfiniteScroll.disabled = true
-      }
+    if(this.statusComponent?.page >= total){
+      if(this.ionInfiniteScroll) this.ionInfiniteScroll.disabled = true
+    }
 
-      this.infiniteScroll$.next(this.statusComponent)
-      event.target.complete();
-    }, 500);
+    this.infiniteScroll$.next(this.statusComponent)
+    event.target.complete();
   }
 
   // REFRESH
