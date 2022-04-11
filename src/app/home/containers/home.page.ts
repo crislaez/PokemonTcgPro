@@ -6,9 +6,6 @@ import { fromSet, SetdActions } from '@pokemonTcgApp/shared/sets';
 import { TypesActions } from '@pokemonTcgApp/shared/types';
 import { emptyObject, errorImage, getObjectKeys, getSliderConfig, gotToTop, sliceLongText, trackById } from '@pokemonTcgApp/shared/utils/helpers/functions';
 import { map, startWith, switchMap } from 'rxjs/operators';
-import SwiperCore, { Navigation, Pagination } from 'swiper';
-
-SwiperCore.use([Pagination, Navigation]);
 
 
 @Component({
@@ -31,28 +28,20 @@ SwiperCore.use([Pagination, Navigation]);
         <ng-container *ngIf="status !== 'pending' ; else loader">
           <ng-container *ngIf="status !== 'error' ; else serverError">
 
-            <div class="header" no-border>
-              <h2 class="text-color-light">{{'COMMON.LAST_SETS' | translate}}</h2>
-            </div>
-
+            <!-- LAST SETS SLIDER  -->
             <ng-container *ngIf="lastSets$ | async as lastSets">
               <ng-container *ngIf="lastSets?.length > 0; else noData">
-                <!-- LAST SETS SLIDER  -->
-                <swiper #swiper effect="fade" [config]="getSliderConfig(lastSets)" >
-                  <ng-template swiperSlide *ngFor="let set of lastSets; trackBy: trackById" >
-                    <ion-card class="slide-ion-card" [routerLink]="['/cards/'+set?.id]" [queryParams]="{name:set?.name}" >
-                      <ion-img class="ion-card-image" [src]="set?.images?.logo" loading="lazy" (ionError)="errorImage($event)"></ion-img>
+                <div class="header" no-border>
+                  <h2 class="text-color-light">{{'COMMON.LAST_SETS' | translate}}</h2>
+                </div>
 
-                      <ion-card-header class="font-medium">
-                      {{ sliceLongText(set?.name) }}
-                      {{ set?.releaseDate }}
-                      </ion-card-header>
-                    </ion-card>
-                  </ng-template>
-                </swiper>
+                <app-swiper
+                  [items]="lastSets">
+                </app-swiper>
               </ng-container>
             </ng-container>
 
+            <!-- ALL SETS SLIDER  -->
             <ng-container *ngIf="sets$ | async as sets">
               <ng-container *ngIf="emptyObject(sets?.data) else noData">
                 <app-infinite-scroll

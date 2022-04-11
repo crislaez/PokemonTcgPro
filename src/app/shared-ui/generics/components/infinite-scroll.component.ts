@@ -17,17 +17,9 @@ SwiperCore.use([Pagination, Navigation]);
         </div>
 
         <!-- SETS SLIDER  -->
-        <swiper #swiper [config]="getSliderConfig(sets?.data[item])">
-          <ng-template swiperSlide *ngFor="let set of sets?.data[item]; trackBy: trackById" >
-            <ion-card class="slide-ion-card" [routerLink]="['/cards/'+set?.id]" [queryParams]="{name:set?.name}" >
-              <ion-img class="ion-card-image" [src]="set?.images?.logo" loading="lazy" (ionError)="errorImage($event)"></ion-img>
-              <ion-card-header class="font-medium">
-              {{ sliceLongText(set?.name) }}
-              {{ set?.releaseDate }}
-              </ion-card-header>
-            </ion-card>
-          </ng-template>
-        </swiper>
+        <app-swiper
+          [items]="sets?.data[item]">
+        </app-swiper>
       </ng-container>
     </ng-container>
 
@@ -88,12 +80,7 @@ export class InfiniteScrollComponent {
   constructor() { }
 
 
-  ngOnInit(): void{
-    console.log('slice -> ', this.slice)
-    console.log('total -> ', this.total)
-  }
   loadData(event: any, total: number): void{
-    console.log(event, total)
     this.loadDataTrigger.next({event, total})
   }
 

@@ -26,7 +26,7 @@ import { filter, map } from 'rxjs/operators';
 
       <!-- TAB FOOTER  -->
       <ion-tabs *ngIf="currentSection$ | async as currentSection">
-        <ion-tab-bar  [translucent]="true" slot="bottom">
+        <ion-tab-bar [translucent]="true" slot="bottom">
           <ion-tab-button [ngClass]="{'active-class': ['home']?.includes(currentSection)}" class="text-color-light" [routerLink]="['home']">
             <ion-icon name="document-text-outline"></ion-icon>
           </ion-tab-button>

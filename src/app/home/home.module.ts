@@ -6,7 +6,6 @@ import { GenericsModule } from '@pokemonTcgApp/shared-ui/generics/generics.modul
 import { RarityModule } from '@pokemonTcgApp/shared/rarity/rarity.module';
 import { SetsModule } from '@pokemonTcgApp/shared/sets/sets.module';
 import { TypesModule } from '@pokemonTcgApp/shared/types/types.module';
-import { SwiperModule } from 'swiper/angular';
 import { HomePage } from './containers/home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -18,10 +17,11 @@ import { HomePageRoutingModule } from './home-routing.module';
     RarityModule,
     GenericsModule,
     TypesModule,
-    SwiperModule,
     TranslateModule.forChild(),
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage
+  ]
 })
 export class HomePageModule {}

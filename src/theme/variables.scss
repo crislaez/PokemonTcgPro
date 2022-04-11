@@ -402,7 +402,7 @@ ion-footer, ion-toolbar{
 
 //footer barra abajo
 ion-tab-bar{
-  background: $primary ;
+  background: $secondary ;
 }
 
 //buscador
@@ -817,6 +817,19 @@ ion-modal{
 
 .no-margin-top{
   margin-top: 0px !important;
+}
+
+.ion-card-content-container{
+  >div, a{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+.span-image{
+  width: 1.5em !important;
+  min-height: 10px !important;
+  background: none !important;
 }
 
 //PAGE CONTAINER

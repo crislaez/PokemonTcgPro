@@ -34,10 +34,14 @@ export const getSliderConfig = (info): SwiperOptions => {
       slidesPerView: info?.length > 1 ? 2 : 1,
       spaceBetween: 30,
       freeMode: true,
-      pagination:{   clickable: true },
+      pagination:{ clickable: true },
       lazy: true,
       preloadImages: false
   }
+}
+
+export const getTypeImages = (type: string, allTypes: {type: string, image: string}[]): string => {
+  return allTypes?.find(({type:storeType}) => storeType === type)?.image || ''
 }
 
 export enum EntityStatus {

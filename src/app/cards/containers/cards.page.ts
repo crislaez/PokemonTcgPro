@@ -26,7 +26,6 @@ import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
       </ion-toolbar>
     </ion-header>
 
-
     <!-- MAIN  -->
     <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="logScrolling($any($event))">
       <div class="empty-header components-color components-background-primary">
