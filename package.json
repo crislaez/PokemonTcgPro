@@ -23,6 +23,7 @@
     "@capacitor/android": "^3.3.4",
     "@capacitor/core": "3.3.4",
     "@capacitor/keyboard": "^1.2.0",
+    "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.0.0",
     "@ngrx/effects": "^13.0.2",
     "@ngrx/store": "^13.0.2",

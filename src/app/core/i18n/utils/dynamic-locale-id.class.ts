@@ -27,8 +27,6 @@ export class DynamicLocaleId extends String {
 
   private loadLocale(lang: string): Promise<any> {
     switch (lang) {
-      case 'es':
-        return import(`@angular/common/locales/es`);
       case 'en':
         return import(`@angular/common/locales/en`);
       default:
