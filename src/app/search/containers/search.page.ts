@@ -26,11 +26,15 @@ import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
   <!-- MAIN  -->
   <ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="logScrolling($any($event))">
 
-    <div class="empty-header components-color components-background-primary">
-      <!-- FORM  -->
-      <form *ngIf="!['pending','error']?.includes(status$ | async)" (submit)="searchSubmit($event)">
-        <ion-searchbar [placeholder]="'COMMON.BY_NAME' | translate" [formControl]="search" (ionClear)="clearSearch($event)"></ion-searchbar>
-      </form>
+    <div class="empty-header components-color components-background-primary displays-center">
+      <ng-container *ngIf="!['pending','error']?.includes(status$ | async)">
+        <!-- FORM  -->
+        <form (submit)="searchSubmit($event)">
+          <ion-searchbar [placeholder]="'COMMON.BY_NAME' | translate" [formControl]="search" (ionClear)="clearSearch($event)"></ion-searchbar>
+        </form>
+        <!-- FILTER  -->
+        <ion-button *ngIf="(types$ | async) as types" class="displays-center class-ion-button filter-ion-button" (click)="openFilterModal(types)"><ion-icon name="options-outline"></ion-icon> </ion-button>
+      </ng-container>
     </div>
 
     <div class="container components-background-dark">
@@ -39,13 +43,6 @@ import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
         <ng-container *ngIf="status$ | async as status">
           <ng-container *ngIf="status !== 'pending' || statusComponent?.page !== 1; else loader">
             <ng-container *ngIf="status !== 'error'; else serverError">
-
-              <!-- FILTER  -->
-              <ng-container *ngIf="(types$ | async) as types">
-                <div class="width-84 margin-center displays-center">
-                  <ion-button class="displays-center class-ion-button" (click)="openFilterModal(types)">{{ 'COMMON.FILTERS' | translate }} <ion-icon name="options-outline"></ion-icon> </ion-button>
-                </div>
-              </ng-container>
 
               <!-- CARDS  -->
               <ng-container *ngIf="cards?.length > 0; else noData">
@@ -219,7 +216,7 @@ export class SearchPage {
         supertypesFilter: types?.supertypes || []
       },
       breakpoints: [0, 0.2, 0.5, 1],
-      initialBreakpoint: 0.4, //modal height
+      initialBreakpoint: 0.35, //modal height
     });
 
     modal.onDidDismiss()

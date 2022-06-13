@@ -386,6 +386,7 @@ ion-header{
 
     ion-title{
       text-align: center;
+      font-size: 21px;
     }
 
     div{
@@ -512,8 +513,8 @@ ion-item{
 }
 
 form{
-  width: 90%;
-  margin: auto;
+  width: 70%;
+  // margin: auto;
   // margin-top: 10px;
   // margin-bottom: 10px;
 }
@@ -605,17 +606,39 @@ ion-modal{
   --color:white !important;
 }
 
-.my-custom-modal-css .modal-wrapper {
-  // margin-top: 100vh;
-  position: absolute;
-  display: block;
-  // border-top-left-radius: 10px;
-  // border-top-right-radius: 10px;
-  overflow: scroll;
-  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+// .my-custom-modal-css .modal-wrapper {
+//   // margin-top: 100vh;
+//   position: absolute;
+//   display: block;
+//   // border-top-left-radius: 10px;
+//   // border-top-right-radius: 10px;
+//   overflow: scroll;
+//   --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+//   --backdrop-opacity: var(--ion-backdrop-opacity, 0.32);
+// }
+// // END MODAL FILTER  *****
+// MODAL
+.my-custom-modal-css {
+  --backdrop-opacity: 1;
+  backdrop-filter: blur(1px);
+
+  &::part(backdrop) {
+      background: #000;
+  }
+
+  &::part(handle) {
+      // background: var(--ion-color-primary);
+      // background: #65629B;
+      width: 150px;
+      height: 6px;
+  }
+
+  &::part(content) {
+      border-radius: 20px; // Here the border radius
+      box-shadow: 0px 0px 20px 5px rgb(0 0 0 / 32%);
+  }
 }
-// END MODAL FILTER  *****
+// END MODAL
 
 // CAPITAL LETTER
 .capital-letter{
@@ -718,6 +741,10 @@ ion-modal{
 
 .margin-left-5{
   margin-left: 5%;
+}
+
+.margin-right-5{
+  margin-right: 5%;
 }
 
 .line-through {
@@ -856,8 +883,8 @@ ion-modal{
     font-weight: bold;
     font-size: 25px;
     margin-top: 0px;
-    width: 74%;
-    margin: auto;
+    min-width: 35%;
+    // margin: auto;
   }
 
   ion-back-button{

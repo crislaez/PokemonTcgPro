@@ -30,3 +30,18 @@ ion-button{
 ion-img::part(image) {
   border-radius: 8px !important;
 }
+
+.line-card {
+  width: 90%;
+  min-height: 95px;
+  --background: #282C34;
+  padding: 5px;
+
+  .line-card-image{
+    width: 18%;
+
+    img, ion-img{
+      min-height: 0 !important;
+    }
+  }
+}
