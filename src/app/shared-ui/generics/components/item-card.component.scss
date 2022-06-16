@@ -1,0 +1,24 @@
+
+@import '../../../../theme/variables';
+
+:host{
+  width: 100%;
+
+  .line-card {
+    width: 93%;
+    // margin: 0 auto;
+    min-height: 95px;
+    --background: #282C34;
+
+    padding: 5px;
+
+    .line-card-image{
+      width: 18%;
+
+      img, ion-img{
+        min-height: 0 !important;
+      }
+    }
+  }
+
+}

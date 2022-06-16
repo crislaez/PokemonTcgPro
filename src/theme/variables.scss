@@ -866,17 +866,17 @@ ion-modal{
   margin-top: 55px;
   // min-height: 80px !important;
   min-height: 40px !important;
-  text-align: center;
+  // text-align: center;
   border: 0px !important;
   border-bottom-color: transparent !important;
   background-image: none !important;
   border-bottom: none !important;
   --border-style: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // flex-direction: row;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+  // align-items: center;
   // background: $primary ;
   background: none;
 
@@ -884,8 +884,14 @@ ion-modal{
     font-weight: bold;
     font-size: 25px;
     margin-top: 0px;
-    min-width: 35%;
+    width: 35%;
+    margin-left: 5%;
     // margin: auto;
+  }
+
+  span{
+    margin-right: 5%;
+    color: $primary;
   }
 
   ion-back-button{

@@ -12,6 +12,7 @@ import { CardOthersComponent } from './components/card-others.component';
 import { CardPricesComponent } from './components/card-prices.component';
 import { FilterModalComponent } from './components/filter-modal.component';
 import { InfiniteScrollComponent } from './components/infinite-scroll.component';
+import { ItemCardComponent } from './components/item-card.component';
 import { NoDataComponent } from './components/no-data.component';
 import { SpinnerComponent } from './components/spinner.component';
 import { SwiperComponent } from './components/swiper.component';
@@ -27,7 +28,8 @@ const COMPONENTS = [
   CardPricesComponent,
   CardOthersComponent,
   CardInfoComponent,
-  CardAttackComponent
+  CardAttackComponent,
+  ItemCardComponent
 ];
 @NgModule({
   declarations: [

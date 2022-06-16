@@ -12,30 +12,29 @@ SwiperCore.use([Pagination, Navigation]);
     <!-- HOME PAGE  -->
     <ng-container *ngIf="from === 'home'">
       <ng-container *ngFor="let item of items; let i = index; trackBy: trackById">
-        <div class="header no-margin-top" no-border>
-          <h3 class="text-color-light">{{ item }}</h3>
+        <div class="header no-margin-top">
+          <div class="div-center">
+            <h3 class="text-color-light">{{ item }}</h3>
+            <span *ngIf="sets?.data?.[item]?.length > 5" [routerLink]="['/show-more/'+item]">{{ 'COMMON.SHEE_MORE' | translate }}</span>
+          </div>
         </div>
 
         <!-- SETS SLIDER  -->
         <app-swiper
-          [items]="sets?.data[item]">
+          [items]="sets?.data?.[item]?.slice(0,5)">
         </app-swiper>
       </ng-container>
     </ng-container>
 
     <!-- CARD PAGE  -->
     <ng-container *ngIf="from === 'card'">
-      <ion-card class="line-card displays-between" *ngFor="let card of items; let i = index; trackBy: trackById" (click)="openSingleCardModal.next(card)">
-        <div class="line-card-image">
-          <ion-img [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
-        </div>
-        <div class="min-width-50">
-          <ion-label *ngIf="card?.name"># {{ card?.number }} {{ sliceText(card?.name) }}</ion-label>
-        </div>
-        <div class="margin-right-5">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </div>
-      </ion-card>
+      <ng-container *ngFor="let card of items; let i = index; trackBy: trackById">
+        <app-item-card
+          [item]="card"
+          [from]="'infiniteScroll'"
+          (openSingleCardModal)="openSingleCardModal.next($event)">
+        </app-item-card>
+      </ng-container>
     </ng-container>
 
     <!-- SEARCH PAGE  -->
@@ -83,6 +82,10 @@ export class InfiniteScrollComponent {
 
   constructor() { }
 
+
+  // ngOnInit(): void{
+  //   console.log(this.sets)
+  // }
 
   loadData(event: any, total: number): void{
     this.loadDataTrigger.next({event, total})
