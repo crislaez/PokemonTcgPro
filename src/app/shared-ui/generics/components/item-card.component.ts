@@ -11,7 +11,8 @@ import { errorImage, sliceText } from '@pokemonTcgApp/shared/utils/helpers/funct
       <ion-img [src]="image" loading="lazy" (ionError)="errorImage($event)"></ion-img>
     </div>
     <div class="min-width-50">
-      <ion-label *ngIf="item?.name">{{ sliceText(item?.name) }}</ion-label>
+    <!-- <ion-label *ngIf="card?.name"># {{ card?.number }} {{ sliceText(card?.name) }}</ion-label> -->
+      <ion-label *ngIf="item?.name">{{ name }}</ion-label>
     </div>
     <div class="margin-right-5">
       <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -38,6 +39,10 @@ export class ItemCardComponent {
 
   get image(){
     return this.item?.images?.logo || this.item?.images?.small;
+  }
+
+  get name(){
+    return this.from === 'infiniteScroll' ? `# ${this.item?.number} ${sliceText(this.item?.name)}` : `${sliceText(this.item?.name)}`
   }
 
   onClick(): void{
