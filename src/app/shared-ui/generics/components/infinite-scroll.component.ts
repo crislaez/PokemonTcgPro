@@ -25,22 +25,15 @@ SwiperCore.use([Pagination, Navigation]);
 
     <!-- CARD PAGE  -->
     <ng-container *ngIf="from === 'card'">
-      <!-- <ion-list>
-        <ion-item detail *ngFor="let card of items; let i = index; trackBy: trackById" (click)="openSingleCardModal.next(card)">
-          <ion-img [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
-          <ion-label *ngIf="card?.name" >{{ sliceText(card?.name) }}</ion-label>
-          <ion-label *ngIf="card?.number" > # {{ card?.number }}</ion-label>
-        </ion-item>
-      </ion-list> -->
       <ion-card class="line-card displays-between" *ngFor="let card of items; let i = index; trackBy: trackById" (click)="openSingleCardModal.next(card)">
         <div class="line-card-image">
           <ion-img [src]="card?.images?.small" loading="lazy" (ionError)="errorImage($event)"></ion-img>
         </div>
-        <div>
-          <ion-label *ngIf="card?.name">{{ sliceText(card?.name) }}</ion-label>
+        <div class="min-width-50">
+          <ion-label *ngIf="card?.name"># {{ card?.number }} {{ sliceText(card?.name) }}</ion-label>
         </div>
         <div class="margin-right-5">
-          <ion-label *ngIf="card?.number"> # {{ card?.number }}</ion-label>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
         </div>
       </ion-card>
     </ng-container>
