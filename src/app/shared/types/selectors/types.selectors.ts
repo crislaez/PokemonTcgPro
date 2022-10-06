@@ -5,37 +5,37 @@ export const selectorTypesState = createFeatureSelector<fromTypes.State>(
   fromTypes.typesFeatureKey
 );
 
-export const getTypeStatus = createSelector(
+export const selectTypeStatus = createSelector(
   selectorTypesState,
   (state) => state.typesStatus
 );
 
-export const getTypes = createSelector(
+export const selectTypes = createSelector(
   selectorTypesState,
   (state) => state.types
 );
 
-export const getSubtypeStatus = createSelector(
+export const selectSubtypeStatus = createSelector(
   selectorTypesState,
   (state) => state.subtypesStatus
 );
 
-export const getSubtype = createSelector(
+export const selectSubtype = createSelector(
   selectorTypesState,
   (state) => state.subtypes
 );
 
-export const getSupertypeStatus = createSelector(
+export const selectSupertypeStatus = createSelector(
   selectorTypesState,
   (state) => state.supertypesStatus
 );
 
-export const getSupertype = createSelector(
+export const selectSupertype = createSelector(
   selectorTypesState,
   (state) => state.supertypes
 );
 
-export const getError = createSelector(
+export const selectError = createSelector(
   selectorTypesState,
   (state) => state.error
 );

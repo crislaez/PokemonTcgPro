@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { NotificationActions } from '@pokemonTcgApp/shared/notification';
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
+import { NotificationActions } from '@PokeTCGdex/shared/notification';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as SetActions from '../actions/set.actions';

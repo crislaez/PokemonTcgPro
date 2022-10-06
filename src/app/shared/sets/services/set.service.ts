@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CoreConfigService } from '@pokemonTcgApp/core/services/core-config.service';
+import { CoreConfigService } from '@PokeTCGdex/core/services/core-config.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Set } from '../models';

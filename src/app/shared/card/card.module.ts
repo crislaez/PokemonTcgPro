@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { NotificationModule } from '@pokemonTcgApp/shared/notification/notification.module';
+import { NotificationModule } from '@PokeTCGdex/shared/notification/notification.module';
 import { CardEffects } from './effects/card.effects';
-import * as fromCard from './reducers/card.reducer';
+import { combineFeatureKey, reducer } from './reducers';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import * as fromCard from './reducers/card.reducer';
   imports: [
     CommonModule,
     NotificationModule,
-    StoreModule.forFeature(fromCard.cardFeatureKey, fromCard.reducer),
+    StoreModule.forFeature(combineFeatureKey, reducer),
     EffectsModule.forFeature([CardEffects]),
   ]
 })

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 import * as RarityActions from '../actions/rarity.actions';
 
 export const rarityFeatureKey = 'rarity';

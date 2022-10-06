@@ -4,7 +4,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { Storage } from '@capacitor/storage'; //APP
 
 
-const LANG = 'pokemonTcgAppLang';
+const LANG = 'PokeTCGdexLang';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../../../assets/i18n/', '.json');

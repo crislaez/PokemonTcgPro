@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { EMPTY, Observable, throwError } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 // import { AuthActions, AuthService } from '@kirolapp/web-modules/auth';
 
 export class HttpErrorInterceptor implements HttpInterceptor {

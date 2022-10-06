@@ -1,0 +1,21 @@
+@import '../../../theme/variables';
+
+ion-header{
+  background: $secondary !important;
+}
+
+ion-button{
+  // --background: #0E0E10 !important;
+  --color: #FFFFFF !important;
+}
+
+ion-item{
+  margin-top: 10px;
+  --background: #EBEBEB !important;
+  // color: $secondBackColor;
+
+  ion-labe{
+    color: #FFFFFF !important;
+  }
+}
+

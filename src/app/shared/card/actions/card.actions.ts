@@ -1,6 +1,6 @@
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
 import { createAction, props } from '@ngrx/store';
-import { Filter } from '@pokemonTcgApp/shared/utils/models';
+import { Filter } from '@PokeTCGdex/shared/models';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 import { Card } from '../models';
 
 
@@ -14,6 +14,14 @@ export const saveCards = createAction(
   props<{ cards: Card[], page: number, filter?: Filter, totalCount: number, error:unknown, status:EntityStatus }>()
 );
 
-export const deleteCards = createAction(
-  '[Card] Delete Cards'
+
+
+export const loadSetCards = createAction(
+  '[Card] Load Set Cards',
+  props<{ page: number, setId: string; filter?: Filter }>()
+);
+
+export const saveSetCards = createAction(
+  '[Card] Save Set Cards',
+  props<{ cards: Card[], setId: string, page: number, filter?: Filter, totalCount: number, error:unknown, status:EntityStatus }>()
 );

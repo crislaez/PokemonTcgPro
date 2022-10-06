@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 import { Set } from '../models';
 
 

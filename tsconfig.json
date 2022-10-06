@@ -14,9 +14,9 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths":{
-      "@pokemonTcgApp/shared/*": ["./src/app/shared/*"],
-      "@pokemonTcgApp/core/*": ["./src/app/core/*"],
-      "@pokemonTcgApp/shared-ui/*": ["./src/app/shared-ui/*"],
+      "@PokeTCGdex/shared/*": ["./src/app/shared/*"],
+      "@PokeTCGdex/core/*": ["./src/app/core/*"],
+      "@PokeTCGdex/shared-ui/*": ["./src/app/shared-ui/*"],
     }
   },
   "angularCompilerOptions": {

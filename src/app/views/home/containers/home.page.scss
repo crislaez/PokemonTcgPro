@@ -1,0 +1,27 @@
+@import '../../../../theme/variables.scss';
+
+.home-div{
+  width: 92%;
+  margin: 0 auto;
+  height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+
+  &:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    top: 0px;
+    left: 150px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(23deg);
+  }
+
+  >div{
+    font-size: 20px;
+  }
+}

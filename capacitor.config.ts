@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.pokemonTcgInfoProApp',
-  appName: 'pokemon Tcg Info Pro',
+  appId: 'com.example.PokeTCGdex',
+  appName: 'PokeTCGdex',
   webDir: 'www',
   bundledWebRuntime: false
 };

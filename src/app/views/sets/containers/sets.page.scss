@@ -1,0 +1,16 @@
+@import '../../../../theme/variables.scss';
+
+ion-button{
+  --border-radius: 5px !important;
+  --background: none;
+  color: $tertiary;
+  width: 15%;
+}
+
+app-set-card{
+  width: 48%;
+}
+
+// form{
+//   width: 100% !important;
+// }

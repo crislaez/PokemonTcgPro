@@ -1,6 +1,6 @@
-## (front-end) POKEMON TCG INFO PRO
+## (front-end) PokeTCGdex
 
-Pokemon Tcg Info Pro es una aplicación hecha en Ionic (Angular, TypeScript, Sass/Css, Html, Rxjs, Ngrx)
+PokeTCGDex es una aplicación hecha en Ionic (Angular, TypeScript, Sass/Css, Html, Rxjs, Ngrx)
 
 <img src="https://github.com/crislaez/PokemonTcgPro/blob/master/src/assets/images/pokemonTcgPro_1.jpg" />
 <hr>
@@ -19,7 +19,7 @@ Pokemon Tcg Info Pro es una aplicación hecha en Ionic (Angular, TypeScript, Sas
 
 ### Que hace el proyecto
 
-Pokemon Tcg Info Pro es una aplicación hecha en Ionic con la información de todas las cartas de Pokemon Tcg, donde tambien se pueden filtrar y buscar diferentes tipos de cartas. 
+PokeTCGdex es una aplicación hecha en Ionic con la información de todas las cartas de Pokemon Tcg, donde tambien se pueden filtrar y buscar diferentes tipos de cartas. 
  
 ### Donde pueden recibir ayuda los usuarios con el proyecto
  

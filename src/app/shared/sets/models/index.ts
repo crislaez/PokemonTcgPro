@@ -1,4 +1,4 @@
-import { Legalities, SetImages } from '@pokemonTcgApp/shared/utils/models';
+import { Legalities, SetImages } from '@PokeTCGdex/shared/models';
 
 export interface Set{
   "id"?:  string;

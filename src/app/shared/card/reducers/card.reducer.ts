@@ -1,10 +1,10 @@
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 import { createReducer, on } from '@ngrx/store';
 import * as CardActions from '../actions/card.actions';
 import { Card } from '../models';
-import { Filter } from '@pokemonTcgApp/shared/utils/models';
+import { Filter } from '@PokeTCGdex/shared/models';
 
-export const cardFeatureKey = 'card';
+export const cardListFeatureKey = 'cardList';
 
 export interface State {
   status: EntityStatus;
@@ -18,7 +18,7 @@ export interface State {
 export const initialState: State = {
   status: EntityStatus.Initial,
   cards: [],
-  page: 0,
+  page: 1,
   totalCount:0,
   filter: null,
   error: undefined
@@ -28,9 +28,17 @@ export const reducer = createReducer(
   initialState,
   on(CardActions.loadCards, (state): State => ({ ...state,  error: undefined, status: EntityStatus.Pending })),
   on(CardActions.saveCards, (state, { cards, page, filter, totalCount, status, error }): State => {
-    const cardsState = page === 1 ? [...cards] : [...state?.cards, ...cards];
-    return ({ ...state, cards: cardsState || [], page, filter, totalCount, status, error })
+    return {
+      ...state,
+      cards: page === 1
+            ? cards
+            : [...(state?.cards ?? []), ...(cards ?? [])],
+      page,
+      filter,
+      totalCount,
+      status,
+      error
+    }
   }),
 
-  on(CardActions.deleteCards, (state): State => ({ ...state,  error: undefined, status: EntityStatus.Initial, cards: [], page: 1, totalCount: 0, filter:{} })),
 );

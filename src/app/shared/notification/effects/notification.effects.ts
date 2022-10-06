@@ -36,7 +36,8 @@ export class NotificationEffects {
     const toast = await this.toastController.create({
       message: message,
       color: color,
-      duration: 1000
+      duration: 1000,
+      cssClass: 'toast-wrapper'
     });
     toast.present();
   }

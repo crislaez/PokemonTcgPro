@@ -1,0 +1,12 @@
+@import '../../../../theme/variables.scss';
+
+ion-button{
+  --border-radius: 5px !important;
+  --background: none;
+  color: $tertiary;
+  width: 15%;
+}
+
+app-pokemon-card{
+  width: 48%;
+}

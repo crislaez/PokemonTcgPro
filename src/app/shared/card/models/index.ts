@@ -1,5 +1,5 @@
-import { Set } from "@pokemonTcgApp/shared/sets";
-import { Attack, CardImages, Legalities, Market, Weakness } from "@pokemonTcgApp/shared/utils/models";
+import { Set } from "@PokeTCGdex/shared/sets";
+import { Attack, CardImages, Legalities, Market, Weakness } from "@PokeTCGdex/shared/models";
 
 export interface Card {
   "id": string;

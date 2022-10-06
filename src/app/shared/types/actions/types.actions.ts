@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { EntityStatus } from '@pokemonTcgApp/shared/utils/helpers/functions';
+import { EntityStatus } from '@PokeTCGdex/shared/utils/functions';
 
 
 export const loadTypes = createAction(
@@ -12,6 +12,7 @@ export const saveTypes = createAction(
 );
 
 
+
 export const loadSubTypes = createAction(
   '[Types] Load SubTypes'
 );
@@ -20,6 +21,7 @@ export const saveSubTypes = createAction(
   '[Types] Save SubTypes',
   props<{ subtypes: string[], error:unknown, status:EntityStatus }>()
 );
+
 
 
 export const loadSuperTypes = createAction(

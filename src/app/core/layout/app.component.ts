@@ -1,31 +1,45 @@
-import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { filter, map } from 'rxjs/operators';
+import { NotificationModal } from '@PokeTCGdex/shared-ui/notification-modal/notification-modal';
 
 @Component({
   selector: 'app-root',
   template:`
     <ion-app >
+      <ion-header class="ion-no-border">
+        <ion-toolbar *ngIf="(currentSection$ | async) as currentSection">
 
-      <!-- MENU LATERAL  -->
-      <!-- <ion-menu side="start" menuId="first" contentId="main">
-        <ion-header>
-          <ion-toolbar >
-            <ion-title class="text-color-light" >{{ 'COMMON.MENU' | translate}}</ion-title>
-          </ion-toolbar>
-        </ion-header>
+          <ion-back-button
+            *ngIf="!isNotShowBackButtons?.includes(currentSection?.route)"
+            class="text-color"
+            slot="start"
+            [defaultHref]="redirectTo(currentSection)"
+            [text]="''">
+          </ion-back-button>
 
-        <ion-content >
-          <ion-item class="text-second-color" *ngFor="let item of lateralMenu;  trackBy: trackById" [routerLink]="['/'+item?.link]" (click)="openEnd()">{{ item?.text | translate }}</ion-item>
-        </ion-content >
-      </ion-menu> -->
+          <ion-title
+            class="text-color"
+            slot="start">
+            {{ 'COMMON.TITLE' | translate }}
+          </ion-title>
+
+          <ion-icon
+            class="text-color"
+            slot="end"
+            name="ellipsis-horizontal-outline"
+            (click)="presentModal()">
+          </ion-icon>
+        </ion-toolbar>
+      </ion-header>
+
 
       <!-- RUTER  -->
       <ion-router-outlet id="main"></ion-router-outlet>
 
       <!-- TAB FOOTER  -->
-      <ion-tabs *ngIf="currentSection$ | async as currentSection">
+      <!-- <ion-tabs *ngIf="currentSection$ | async as currentSection">
         <ion-tab-bar [translucent]="true" slot="bottom">
           <ion-tab-button [ngClass]="{'active-class': ['home']?.includes(currentSection)}" class="text-color-light" [routerLink]="['home']">
             <ion-icon name="document-text-outline"></ion-icon>
@@ -35,7 +49,7 @@ import { filter, map } from 'rxjs/operators';
             <ion-icon name="search-outline"></ion-icon>
           </ion-tab-button>
         </ion-tab-bar>
-      </ion-tabs>
+      </ion-tabs> -->
 
     </ion-app>
   `,
@@ -44,16 +58,46 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent {
 
-  currentSection$: Observable<string> = this.router.events.pipe(
+  isNotShowBackButtons = ['home'];
+
+  currentSection$ = this.router.events.pipe(
     filter((event: any) => event instanceof NavigationStart),
     map((event: NavigationEnd) => {
-      const { url = ''} = event || {}
-      let route = url?.split('/')[1];
-      return route || 'home';
+      const { url = ''} = event || {};
+      const [, route = null ] = url?.split('/') || url
+
+      return {
+        'home':{label:'COMMON.TITLE', route:'home'},
+        'cards':{label:'COMMON.TITLE', route:'cards'},
+        'sets': {label:'COMMON.TITLE', route:'sets'},
+        'set': {label:'COMMON.TITLE', route:'set'},
+        'storage':{label:'COMMON.TITLE', route:'storage'},
+        // '/banlist':{label:'COMMON.TITLE', route:'banlist'},
+      }[route] || {llabel:'COMMON.TITLE', route:'home'}
     })
+    // tap(d => console.log(d))
   )
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private modalController: ModalController,
+  ) {}
 
+
+  redirectTo(currentSection:any): string{
+    const { route = null} = currentSection || {};
+    if(route === 'set') return '/sets'
+    return '/home';
+  }
+
+  // OPEN FILTER MODAL
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: NotificationModal,
+    });
+
+    modal.present();
+    await modal.onDidDismiss();
+  }
 
 }

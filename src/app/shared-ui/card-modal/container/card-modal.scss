@@ -1,0 +1,92 @@
+@import '../../../../theme/variables';
+
+
+:host{
+  width: 100%;
+}
+
+ygopro-generic-card{
+  width: 49% !important;
+}
+
+app-set-card{
+  width: 58%;
+  margin: 0 auto;
+}
+
+ion-segment-button{
+  --color-checked: #9147FF;
+  // color: #9147FF;
+  text-transform: initial;
+}
+
+ion-title{
+  width: 100% !important;
+  font-size: 22px !important;
+  text-align: center !important;
+}
+
+.banner-card{
+  width: 80% !important;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: -200px;
+  min-height: 360px !important;
+  border-radius: 20px;
+
+  >ion-img{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}
+
+.card-card {
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.07);
+  margin-bottom: 20px;
+
+  img{
+    background: none;
+    width: 15%;
+  }
+
+  .forbidden{
+    background: red;
+    color: black;
+  }
+
+  .limited{
+    background: orange;
+    color: black;
+  }
+
+  .semi-limited{
+    background: yellow;
+    color: black;
+  }
+
+  >div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 100%;
+  }
+
+  .banlist-chip{
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+}
+
+.padding-6-margin{
+  padding: 10px;
+  margin: 0 auto !important;
+}

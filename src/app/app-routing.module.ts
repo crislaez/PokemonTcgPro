@@ -4,19 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./views/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'show-more',
-    loadChildren: () => import('./show-more/show-more.module').then( m => m.ShowMorePageModule)
+    path: 'sets',
+    loadChildren: () => import('./views/sets/sets.module').then( m => m.SetsPageModule)
+  },
+  {
+    path: 'set',
+    loadChildren: () => import('./views/set/set.module').then( m => m.SetPageModule)
   },
   {
     path: 'cards',
-    loadChildren: () => import('./cards/cards.module').then( m => m.CardsPageModule)
+    loadChildren: () => import('./views/cards/cards.module').then( m => m.CardsPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+    path: 'storage',
+    loadChildren: () => import('./views/storage/storage.module').then( m => m.StoragePageModule)
   },
   {
     path: '**',

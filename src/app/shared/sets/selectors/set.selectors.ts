@@ -15,11 +15,6 @@ export const getSets = createSelector(
   (state) => state?.sets
 );
 
-export const getLastSets = createSelector(
-  selectorSetState,
-  (state) => state?.lastSets
-);
-
 export const getError = createSelector(
   selectorSetState,
   (state) => state?.error

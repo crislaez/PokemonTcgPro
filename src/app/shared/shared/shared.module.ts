@@ -10,8 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    // IonicModule,
-    // TranslateModule.forChild()
   ],
   exports:[
     FormsModule,
