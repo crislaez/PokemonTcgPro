@@ -429,7 +429,7 @@ ion-tab-bar{
 //buscador
 ion-searchbar{
   --box-shadow: none !important;
-  --border-radius: 15px !important;
+  --border-radius: 50px !important;
   transform: scaleY(0.8);
 
   .searchbar-input-container {
@@ -760,6 +760,10 @@ ion-modal{
 
 .margin-top-30{
   margin-top: 30px !important;
+}
+
+.margin-bottom-30{
+  margin-bottom: 30px !important;
 }
 
 .margin-left-45{

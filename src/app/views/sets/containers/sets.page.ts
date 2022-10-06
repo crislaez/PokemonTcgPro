@@ -199,7 +199,6 @@ export class SetsPage {
 
   // OPEN FILTER MODAL
   async openFilterModal(yearFilter: string[]) {
-    console.log(this.componentStatus)
     const modal = await this.modalController.create({
       component: FilterModalComponent,
       cssClass: 'my-custom-modal-css',
@@ -209,7 +208,7 @@ export class SetsPage {
         isFromSet: true
       },
       breakpoints: [0, 0.2, 0.5, 1],
-      initialBreakpoint: 0.35, //modal height
+      initialBreakpoint: 0.2, //modal height
     });
 
     modal.present();

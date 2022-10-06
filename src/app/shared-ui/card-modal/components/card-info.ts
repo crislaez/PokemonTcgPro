@@ -79,20 +79,23 @@ import { cardColors, getObjectKeys, isNotEmptyObject, trackById } from '@PokeTCG
     </div>
 
     <ion-card class="card-card padding-6-margin">
-      <div *ngFor="let attack of card?.attacks; trackBy: trackById">
-        <div class="width-30 displays-start">
-          <img *ngFor="let cost of attack?.cost; trackBy: trackById" loading="lazy" [src]="'assets/images/' + cost +'.png'">
+      <ng-container *ngFor="let attack of card?.attacks; trackBy: trackById">
+        <div class="margin-bottom-30">
+          <div class="width-30 displays-start">
+            <img *ngFor="let cost of attack?.cost; trackBy: trackById" loading="lazy" [src]="'assets/images/' + cost +'.png'">
+          </div>
+          <div class="width-40 height-30 text-color span-bold ">
+            {{ attack?.name }}
+          </div>
+          <div class="width-13 height-30 text-color-light">
+            {{ attack?.damage }}
+          </div>
+          <div class="width-max height-30 text-color-light">
+            {{ attack?.text }}
+          </div>
         </div>
-        <div class="width-40 height-30 text-color span-bold ">
-          {{ attack?.name }}
-        </div>
-        <div class="width-13 height-30 text-color-light">
-          {{ attack?.damage }}
-        </div>
-        <div class="width-max height-30 text-color-light">
-          {{ attack?.text }}
-        </div>
-      </div>
+        <hr>
+      </ng-container>
     </ion-card>
   </ng-container>
 
@@ -104,7 +107,7 @@ import { cardColors, getObjectKeys, isNotEmptyObject, trackById } from '@PokeTCG
 
     <ion-card class="card-card padding-6-margin">
       <div *ngFor="let ability of card?.abilities; trackBy: trackById">
-        <div class="width-40 height-30 text-color-light radius-10" [ngStyle]="{'background':getCardColor}">
+        <div class="width-40 height-30 text-color-light radius-10">
           {{ ability?.type }}
         </div>
         <div class="width-40 height-30 text-color span-bold">
