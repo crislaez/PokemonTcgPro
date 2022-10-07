@@ -61,6 +61,7 @@
     "COST":"Cost",
     "SUPERTYPE":"Supertype",
     "SUBTYPE":"Subtype",
+    "RESISTANCES":"Resistances",
     "TYPE":"Type",
     "SAVE":"Save",
     "SAVED":"Saved",

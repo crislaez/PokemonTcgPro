@@ -18,7 +18,7 @@ import { cardColors, getObjectKeys, isNotEmptyObject, trackById } from '@PokeTCG
           </div>
 
           <div
-            *ngIf="!['retreatCost', 'attacks', 'rules','subtypes', 'types', 'weaknesses']?.includes(info?.field )"
+            *ngIf="!['retreatCost', 'attacks', 'rules','subtypes', 'types', 'weaknesses', 'resistances']?.includes(info?.field )"
             [ngClass]="{'width-90': info?.field === 'flavorText', 'width-40': info?.field !== 'flavorText'}"
             class="height-30 text-color-light">
             {{ cardField }}
@@ -43,7 +43,7 @@ import { cardColors, getObjectKeys, isNotEmptyObject, trackById } from '@PokeTCG
             <img loading="lazy" [src]="'assets/images/' + cardField +'.png'">
           </div>
 
-          <div *ngIf="['weaknesses']?.includes(info?.field)" class="width-40 height-30 text-color-light displays-start">
+          <div *ngIf="['weaknesses', 'resistances']?.includes(info?.field)" class="width-40 height-30 text-color-light displays-start">
             <img loading="lazy" [src]="'assets/images/' + cardField?.[0]?.type +'.png'"> <div class="width-20"> {{ cardField?.[0]?.value }}</div>
           </div>
 
@@ -139,6 +139,7 @@ export class CardInfoComponent {
     { id:4, label:'COMMON.TYPE', field:'types'},
     { id:5, label:'COMMON.RETREAT_COST', field:'retreatCost'},
     { id:6, label:'COMMON.WEAKNESSES', field:'weaknesses'},
+    { id:6, label:'COMMON.RESISTANCES', field:'resistances'},
     { id:7, label:'COMMON.REGULATION_MARK', field:'regulationMark'},
     { id:8, label:'COMMON.RARITY', field:'rarity'},
     { id:9, label:'COMMON.ARTIST', field:'artist'},
